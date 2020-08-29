@@ -12,17 +12,8 @@
           padding="xs"
           flat
           dense
-          round
           @click="$router.push('login')"
-        > Login </q-btn>
-
-        <q-btn
-          padding="xs"
-          flat
-          dense
-          round
-          @click="$router.push('register')"
-        > Register </q-btn>
+        > Login / Register </q-btn>
 
       </q-toolbar>
     </q-header>
