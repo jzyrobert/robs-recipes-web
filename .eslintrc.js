@@ -9,19 +9,19 @@ module.exports = {
   // Must use parserOptions instead of "parser" to allow vue-eslint-parser to keep working
   // `parser: 'vue-eslint-parser'` is already included with any 'plugin:vue/**' config and should be omitted
   parserOptions: {
-    // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser#configuration
-    // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin#eslint
-    // Needed to make the parser take into account 'vue' files
-    extraFileExtensions: ['.vue'],
+    extraFileExtensions: [
+      '.vue'
+    ],
     parser: '@typescript-eslint/parser',
-    project: resolve(__dirname, './tsconfig.json'),
+    project: './tsconfig.json',
     tsconfigRootDir: __dirname,
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module' // Allows for the use of imports
+    ecmaVersion: 2020,
+    sourceType: 'module'
   },
 
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
 
   // Rules order is important, please avoid shuffling them
@@ -74,13 +74,27 @@ module.exports = {
   // add your custom rules here
   rules: {
     'prefer-promise-reject-errors': 'off',
-
-    // TypeScript
-    quotes: ['warn', 'single', { avoidEscape: true }],
+    quotes: [
+      'warn',
+      'single',
+      {
+        avoidEscape: true
+      }
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+  },
 
-    // allow debugger during development only
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+  'extends': [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:vue/essential',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/vue',
+    'eslint:recommended',
+    '@vue/prettier'
+  ]
 }

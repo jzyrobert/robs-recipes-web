@@ -6,15 +6,12 @@
           Robs Recipes
         </q-toolbar-title>
 
-        <q-space /> <!-- eat up all the free space -->
+        <q-space />
+        <!-- eat up all the free space -->
 
-        <q-btn
-          padding="xs"
-          flat
-          dense
-          @click="$router.push('login')"
-        > Login / Register </q-btn>
-
+        <q-btn padding="xs" flat dense @click="$router.push('login')">
+          Login / Register
+        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -25,14 +22,8 @@
 </template>
 
 <script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
 
-import { defineComponent, ref } from '@vue/composition-api';
-
-export default defineComponent({
-  name: 'MainLayout',
-  components: { },
-  setup() {
-    return {}
-  }
-});
+@Component
+export default class MainLayout extends Vue {}
 </script>

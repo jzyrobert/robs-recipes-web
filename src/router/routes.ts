@@ -1,19 +1,16 @@
 import { RouteConfig } from 'vue-router';
+import LoginRegister from '../pages/LoginRegister.vue';
 
 const routes: RouteConfig[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
+    children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
   {
     path: '/login',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/LoginRegister.vue') }
-    ]
+    children: [{ path: '', component: LoginRegister }]
   },
 
   // Always leave this as last one,

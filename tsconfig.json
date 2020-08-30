@@ -5,7 +5,8 @@
     "module": "esnext",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "experimentalDecorators": true
   },
   "include": ["src/**/*"]
 }
