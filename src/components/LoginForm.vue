@@ -46,12 +46,28 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import { Validate } from 'vuelidate-property-decorators';
 import { required, email } from 'vuelidate/lib/validators';
+import { mapActions } from 'vuex';
 
-@Component
+import { LoginResponse } from '../store/modules/loginModule';
+
+@Component({
+  methods: {
+    ...mapActions('login', ['attemptLogin'])
+  }
+})
 export default class LoginForm extends Vue {
+  attemptLogin!: ({
+    email,
+    password
+  }: {
+    email: string;
+    password: string;
+  }) => Promise<LoginResponse>;
+
   @Validate({ required, email })
   email = '';
 
@@ -62,6 +78,16 @@ export default class LoginForm extends Vue {
 
   onLogin() {
     console.log('Login pressed');
+    this.attemptLogin({
+      email: this.email,
+      password: this.password
+    })
+      .then(() => {
+        void this.$router.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   onReset() {

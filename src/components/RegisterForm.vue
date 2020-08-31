@@ -106,7 +106,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import { Validate } from 'vuelidate-property-decorators';
 import { required, email, minLength } from 'vuelidate/lib/validators';
 

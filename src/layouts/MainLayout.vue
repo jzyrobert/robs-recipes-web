@@ -9,8 +9,24 @@
         <q-space />
         <!-- eat up all the free space -->
 
-        <q-btn padding="xs" flat dense @click="$router.push('login')">
+        <q-btn
+          v-if="!isLoggedIn"
+          padding="xs"
+          flat
+          dense
+          @click="$router.push('login')"
+        >
           Login / Register
+        </q-btn>
+
+        <q-btn
+          v-if="isLoggedIn"
+          padding="xs"
+          flat
+          dense
+          @click="$router.push('account')"
+        >
+          {{ name }}
         </q-btn>
       </q-toolbar>
     </q-header>
@@ -22,8 +38,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { mapState } from 'vuex';
 
-@Component
+@Component({
+  computed: {
+    ...mapState('login', ['isLoggedIn', 'name'])
+  }
+})
 export default class MainLayout extends Vue {}
 </script>

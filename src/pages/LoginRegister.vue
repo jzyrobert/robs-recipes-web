@@ -27,18 +27,32 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import RegisterForm from '../components/RegisterForm.vue';
 import LoginForm from '../components/LoginForm.vue';
+import VueRouter from 'vue-router';
+import { mapState } from 'vuex';
 
 @Component({
   components: {
     LoginForm,
     RegisterForm
+  },
+  computed: {
+    ...mapState('login', ['isLoggedIn', 'name'])
   }
 })
 export default class LoginPage extends Vue {
+  isLoggedIn!: boolean;
+  $router!: VueRouter;
   tab = 'login';
+
+  created() {
+    if (this.isLoggedIn) {
+      void this.$router.push('/');
+    }
+  }
 }
 </script>
 
